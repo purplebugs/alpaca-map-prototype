@@ -8,6 +8,14 @@ Visualising alpacas on a map
 npm install
 ```
 
+## First time users only 🪴
+
+Create a .env file in the root of your project containing the google maps API key
+
+```
+GOOGLE_MAPS_API_KEY="YOURSECRETKEYGOESHERE"
+```
+
 ## Start app 🚀
 
 ```
@@ -25,11 +33,16 @@ npm start
 Done:
 
 - Local server up and running
+- Proof of concept calculate distance using Google maps distance matrix API
 
 Not done:
 
 - Map showing location of alpacas based on GeoJSON
 - Calculation distance of alpaca from my current location
+
+## Credits 👏
+
+- [Google maps distance matrix API](https://developers.google.com/maps/documentation/distance-matrix?hl=en_GB)
 
 ## License 📝
 
