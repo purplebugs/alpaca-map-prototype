@@ -22,7 +22,7 @@ GOOGLE_MAPS_API_KEY="YOURSECRETKEYGOESHERE"
 npm start
 ```
 
-## Use app 🍎
+## Use app 🎷
 
 - Navigate to [http://localhost:3030/](http://localhost:3030/) - Check console for API messages
 
@@ -33,7 +33,8 @@ npm start
 Done:
 
 - Local server up and running
-- Proof of concept calculate distance using Google maps distance matrix API
+- Calculation of fixed distance using Google maps distance matrix API to console
+- Use browser Geolocation API to get and show current location when user clicks button on homepage
 
 Not done:
 
@@ -43,6 +44,7 @@ Not done:
 ## Credits 👏
 
 - [Google maps distance matrix API](https://developers.google.com/maps/documentation/distance-matrix?hl=en_GB)
+- [Browser Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 
 ## License 📝
 
