@@ -34,6 +34,7 @@ Done:
 
 - Local server up and running
 - Calculation of fixed distance using Google maps distance matrix API to console
+- Client side calculation of fixed distance using Google maps distance matrix, render map in browser
 - Use browser Geolocation API to get and show current location when user clicks button on homepage
 
 Not done:
