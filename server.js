@@ -18,6 +18,7 @@ var axios = require("axios");
 // NB: There is also a Directions API https://developers.google.com/maps/documentation/directions/get-directions
 // eg: https://maps.googleapis.com/maps/api/directions/json?origin=Boston%2C%20MA&destination=Concord%2C%20MA&waypoints=via%3ACharlestown%2CMA%7Cvia%3ALexington%2CMA&key=YOUR_API_KEY'
 
+// Ref: https://developers.google.com/maps/documentation/distance-matrix?hl=en_GB
 // Ref: https://developers.google.com/maps/documentation/javascript/distancematrix
 
 const searchParamsDistanceMatrix = new URLSearchParams();
