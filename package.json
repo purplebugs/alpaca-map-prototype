@@ -1,0 +1,26 @@
+{
+  "name": "alpaca-map",
+  "version": "1.0.0",
+  "description": "Visualising alpacas on a map",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/purplebugs/alpaca-map.git"
+  },
+  "keywords": [
+    "Alpaca",
+    "map"
+  ],
+  "author": "Anita Lipsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/purplebugs/alpaca-map/issues"
+  },
+  "homepage": "https://github.com/purplebugs/alpaca-map#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
