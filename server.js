@@ -15,14 +15,26 @@ app.listen(port, () => {
 
 var axios = require("axios");
 
-var config = {
+// NB: There is also a Directions API https://developers.google.com/maps/documentation/directions/get-directions
+// eg: https://maps.googleapis.com/maps/api/directions/json?origin=Boston%2C%20MA&destination=Concord%2C%20MA&waypoints=via%3ACharlestown%2CMA%7Cvia%3ALexington%2CMA&key=YOUR_API_KEY'
+
+// Ref: https://developers.google.com/maps/documentation/javascript/distancematrix
+
+const searchParamsDistanceMatrix = new URLSearchParams();
+searchParamsDistanceMatrix.set("origins", "Washington DC");
+searchParamsDistanceMatrix.set("destinations", "New York City");
+searchParamsDistanceMatrix.set("key", process.env.GOOGLE_MAPS_API_KEY);
+const searchParamsDistanceMatrixPath = "distancematrix";
+
+var distanceMatrixAPI = {
   method: "get",
-  url: `https://maps.googleapis.com/maps/api/distancematrix/json?origins=Washington%2C%20DC&destinations=New%20York%20City%2C%20NY&units=imperial&key=${process.env.GOOGLE_MAPS_API_KEY}`,
+  url: `https://maps.googleapis.com/maps/api/${searchParamsDistanceMatrixPath}/json?${searchParamsDistanceMatrix}`,
   headers: {},
 };
 
-axios(config)
+axios(distanceMatrixAPI)
   .then(function (response) {
+    console.log("-------- distanceMatrixAPI ----------");
     console.log(JSON.stringify(response.data));
   })
   .catch(function (error) {
