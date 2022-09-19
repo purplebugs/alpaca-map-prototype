@@ -19,7 +19,7 @@ var axios = require("axios");
 // eg: https://maps.googleapis.com/maps/api/directions/json?origin=Boston%2C%20MA&destination=Concord%2C%20MA&waypoints=via%3ACharlestown%2CMA%7Cvia%3ALexington%2CMA&key=YOUR_API_KEY'
 
 // Ref: https://developers.google.com/maps/documentation/distance-matrix?hl=en_GB
-// Ref: https://developers.google.com/maps/documentation/javascript/distancematrix
+// Ref: https://developers.google.com/maps/documentation/distance-matrix/start
 
 const searchParamsDistanceMatrix = new URLSearchParams();
 searchParamsDistanceMatrix.set("origins", "Washington DC");
