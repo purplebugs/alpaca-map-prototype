@@ -14,6 +14,15 @@ app.get("/api/hello", (req, res) => {
   res.json({ name: "cutest alpaca" });
 });
 
+app.get("/api/closestAlpacasByRadius", (req, res) => {
+  // TODO use lat,long, radius in kilometres from request to query Elastic for fixed radius, return list of alpacas
+  // Returning mock list of alpaca locations while building up solution
+  res.json([
+    { latitude: 59.919239, longitude: 10.73107 },
+    { latitude: 63.430515, longitude: 10.395053 },
+  ]);
+});
+
 app.use(express.static("static"));
 
 app.listen(port, () => {
