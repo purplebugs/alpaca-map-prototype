@@ -7,6 +7,10 @@ app.get("/api", (req, res) => {
   res.send("Hello World!");
 });
 
+app.get("/api/hello", (req, res) => {
+  res.json({ name: "cutest alpaca" });
+});
+
 app.use(express.static("static"));
 
 app.listen(port, () => {
