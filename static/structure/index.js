@@ -8,6 +8,9 @@ const functionReturnsAPromise = () => {
 
 const getGeoPosition = () => {
   return new Promise((resolve, reject) => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
+    // Wrap navigator.geolocation browser API in a promise because it returns asynchronously
+    // however was written before Promises, therefore it does not return a Promise
     navigator.geolocation.getCurrentPosition(
       (position) => {
         resolve({
