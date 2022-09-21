@@ -103,7 +103,7 @@ const initMap = async () => {
           new google.maps.Marker({
             map,
             position: results[0].geometry.location,
-            label: asDestination ? "D" : "O",
+            label: asDestination ? "Alpaca" : "My location",
           })
         );
       };
