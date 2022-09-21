@@ -18,8 +18,8 @@ app.get("/api/closestAlpacasByRadius", (req, res) => {
   // TODO use lat,long, radius in kilometres from request to query Elastic for fixed radius, return list of alpacas
   // Returning mock list of alpaca locations while building up solution
   res.json([
-    { latitude: 59.919239, longitude: 10.73107 },
-    { latitude: 63.430515, longitude: 10.395053 },
+    { lat: 60.391262, lng: 5.322054 },
+    { lat: 63.430515, lng: 10.395053 },
   ]);
 });
 
