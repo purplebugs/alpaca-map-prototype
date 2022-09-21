@@ -6,6 +6,34 @@
     <script type="module" src="./closestAlpacas.js"></script>
   </head>
   <body>
+    <h1>Outline</h1>
+
+    <h2>Back end</h2>
+    <ul>
+      <li>
+        Elasticsearch to find alpacas within radius distance of current
+        location. STATUS: TODO
+      </li>
+      <li>
+        Create endpoint for elasticsearch result in app using express.js.
+        STATUS: mock API endpoint mock created in express
+      </li>
+    </ul>
+
+    <h2>Front end</h2>
+    <ul>
+      <li>Browser API to get current location. STATUS: showing on map</li>
+      <li>
+        Consume endpoint to get list of closest radius distance alpacas. STATUS:
+        showing on map
+      </li>
+      <li>
+        Google maps node.js FE client display the map and calculate
+        travel/driving distance using Distance Matrix API. STATUS: showing on
+        map, TODO: sort by closest, make pretty
+      </li>
+    </ul>
+
     <h2>Distance Matrix</h2>
     <a
       href="https://developers.google.com/maps/documentation/javascript/examples/map-simple"

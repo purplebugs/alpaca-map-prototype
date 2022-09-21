@@ -2,46 +2,25 @@
   <head>
     <title>🦙 Alpaca Map 🗺</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <h2>Outline for app</h2>
-    <a href="showClosestAlpacas.html">See outline</a>
+    <h2>Working app so far</h2>
+    <ul>
+      <li><a href="./structure/index.html">Show current location on map</a></li>
+      <li>
+        <a href="./structure/closestAlpacas.html"
+          >Show closest alpacas on map</a
+        >
+      </li>
+    </ul>
 
-    <h2>Get my current coordinates</h2>
-    <button id="find-me">Show my location</button><br />
-    <p id="status"></p>
-    <a id="map-link" target="_blank"></a>
     <hr />
-    <h2>Simple map</h2>
-    <a href="map.html">Example simple map</a>
-    <hr />
-    <h2>
-      Distance Matrix,
-      <a
-        href="https://developers.google.com/maps/documentation/javascript/examples/distance-matrix#try-sample"
-        >Ref</a
-      >
-    </h2>
-    <div id="container">
-      <div id="map"></div>
-      <div id="sidebar">
-        <h3 style="flex-grow: 0">Request</h3>
-        <pre style="flex-grow: 1" id="request"></pre>
-        <h3 style="flex-grow: 0">Response</h3>
-        <pre style="flex-grow: 1" id="response"></pre>
-      </div>
-    </div>
 
-    <!-- 
-     The `defer` attribute causes the callback to execute after the full HTML
-     document has been parsed. For non-blocking uses, avoiding race conditions,
-     and consistent behavior across browsers, consider loading using Promises
-     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4CRGK7nl21aBT_1uzNgLZ0B2SyAyd__E&callback=initMap&v=weekly"
-      defer
-    ></script>
+    <h2>Google example</h2>
+    <ul>
+      <li><a href="map.html">Example simple map</a></li>
+    </ul>
+
+    <hr />
   </body>
 </html>
