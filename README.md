@@ -32,7 +32,7 @@ npm start
 
 - Navigate to [http://localhost:3000/](http://localhost:3000/) and follow links in UI
 
-- http://localhost:3000/api - Shows message
+- http://localhost:3000/api - Shows message, outputs logs to console
 
 ## Status 🚜
 
