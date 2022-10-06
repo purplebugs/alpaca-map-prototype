@@ -1,45 +1,20 @@
 <html>
   <head>
-    <title>Closest alpacas Map</title>
+    <title>Alpacas - distance from my location</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script type="module" src="./closestAlpacas.js"></script>
+    <script type="module" src="./alpacasOnMap.js"></script>
   </head>
   <body>
-    <h1>Outline</h1>
-
-    <h2>Back end</h2>
-    <ul>
-      <li>
-        Elasticsearch to find alpacas within radius distance of current
-        location. STATUS: TODO
-      </li>
-      <li>
-        Create endpoint for elasticsearch result in app using express.js.
-        STATUS: mock API endpoint mock created in express
-      </li>
-    </ul>
-
-    <h2>Front end</h2>
-    <ul>
-      <li>Browser API to get current location. STATUS: showing on map</li>
-      <li>
-        Consume endpoint to get list of closest radius distance alpacas. STATUS:
-        showing on map
-      </li>
-      <li>
-        Google maps node.js FE client display the map and calculate
-        travel/driving distance using Distance Matrix API. STATUS: showing on
-        map, TODO: sort by closest, make pretty
-      </li>
-    </ul>
+    <h1>Alpacas - distance from my location on map</h1>
+    Takes a moment to load
 
     <h2>Distance Matrix</h2>
     <a
       href="https://developers.google.com/maps/documentation/javascript/examples/map-simple"
       >Ref</a
     >
-    <h3>Show closest alpacas on map</h3>
+
     <div id="container">
       <div id="map"></div>
       <div id="sidebar">

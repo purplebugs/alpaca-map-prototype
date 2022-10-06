@@ -32,6 +32,39 @@ const readData = async () => {
   return responseJSON;
 };
 
+const readAll = async () => {
+  const response = await fetch("http://localhost:3000/api/all");
+
+  /* Example response, snip:
+    "location":{"kommunenavn":"NESBYEN","coordinates":[9.19248180144522,60.48698436178697],
+  */
+
+  const responseJSON = await response.json();
+  return responseJSON;
+};
+
+const extractLocations = (listOfAlpacas) => {
+  const myOutput = [];
+  for (const item of listOfAlpacas) {
+    // Transform from [9.19248180144522,60.48698436178697] to { lat: 60.391262, lng: 5.322054 }
+    const latitude = item?._source?.location?.coordinates[1];
+    const longitude = item?._source?.location?.coordinates[0];
+
+    console.log(latitude);
+    console.log(longitude);
+    if (latitude !== null && latitude !== undefined) {
+      if (longitude !== null && longitude !== undefined)
+        myOutput.push({
+          lat: item?._source?.location?.coordinates[1],
+          lng: item?._source?.location?.coordinates[0],
+        });
+    }
+  }
+
+  console.log("myOutput", myOutput);
+  return myOutput;
+};
+
 // Ref: https://developers.google.com/maps/documentation/javascript/examples/distance-matrix#try-sample
 /**
  * @license
@@ -54,6 +87,10 @@ const initMap = async () => {
   const getClosestAlpacasByRadius = await readData();
   console.log("/api/closestAlpacasByRadius", getClosestAlpacasByRadius);
 
+  const getAll = await readAll();
+  console.log("/api/all", getAll);
+  const getLocations = extractLocations(getAll);
+
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -68,7 +105,7 @@ const initMap = async () => {
   const origin1 = getPosition;
   const request = {
     origins: [origin1],
-    destinations: getClosestAlpacasByRadius,
+    destinations: getLocations, // getClosestAlpacasByRadius,
     travelMode: google.maps.TravelMode.DRIVING,
     unitSystem: google.maps.UnitSystem.METRIC,
     avoidHighways: false,
