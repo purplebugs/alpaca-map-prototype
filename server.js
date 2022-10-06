@@ -46,7 +46,9 @@ app.get("/api/all", async (req, res) => {
     },
   });
 
-  res.json(result.hits.hits);
+  const response = result.hits.hits;
+  //console.log(response);
+  res.json(response);
 });
 
 app.get("/api/farm", async (req, res) => {
@@ -57,7 +59,40 @@ app.get("/api/farm", async (req, res) => {
     sort: [{ "name.keyword": { order: "asc" } }],
   });
 
-  res.json(result.hits.hits);
+  const response = result.hits.hits;
+  // console.log(response);
+  res.json(response);
+});
+
+app.get("/api/country/:countryCode", async (req, res) => {
+  // send list of all public alpacas by country
+  // eg /api/country/NO, /api/country/SE, /api/country/AU
+  const country = req.params.countryCode;
+
+  const result = await client.search({
+    index: "alpacas-enriched-with-public-farm-flag",
+    query: {
+      bool: {
+        must: [
+          {
+            match: {
+              country: country,
+            },
+          },
+          {
+            match: {
+              "farmType.public": true,
+            },
+          },
+        ],
+      },
+    },
+    sort: [{ "name.keyword": { order: "asc" } }],
+  });
+
+  const response = result.hits.hits;
+  // console.log(response);
+  res.json(response);
 });
 
 app.use(express.static("static"));

@@ -42,6 +42,7 @@ Examples to navigate to
 - http://localhost:3000/api/hello
 - http://localhost:3000/api/all
 - http://localhost:3000/api/farm
+- http://localhost:3000/api/country/NO
 
 ## Status 🚜
 
