@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Alpacas - distance from my location</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./alpacasDistanceFromMe.js"></script>
+  </head>
+  <body>
+    <h1>Alpacas - distance from my location on map</h1>
+    Takes a moment to load
+
+    <h2>Distance Matrix</h2>
+    <a
+      href="https://developers.google.com/maps/documentation/javascript/examples/map-simple"
+      >Ref</a
+    >
+
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <h3 style="flex-grow: 0">Request</h3>
+        <pre style="flex-grow: 1" id="request"></pre>
+        <h3 style="flex-grow: 0">Response</h3>
+        <pre style="flex-grow: 1" id="response"></pre>
+      </div>
+    </div>
+    <hr />
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4CRGK7nl21aBT_1uzNgLZ0B2SyAyd__E&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
