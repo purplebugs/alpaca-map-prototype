@@ -24,9 +24,9 @@ npm start
 
 ## Use app 🎷
 
-- Navigate to [http://localhost:3030/](http://localhost:3030/) - Check console for API messages
+- Navigate to [http://localhost:3000/](http://localhost:3000/) - Check console for API messages
 
-- http://localhost:3030/api - Shows message
+- http://localhost:3000/api - Shows message
 
 ## Status 🚜
 
