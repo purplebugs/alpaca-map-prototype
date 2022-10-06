@@ -10,11 +10,17 @@ npm install
 
 ## First time users only 🪴
 
-Create a .env file in the root of your project containing the google maps API key
+1. Indexes should be created in Elasticsearch. Tip: this [elastic-data-tool](https://github.com/purplebugs/elastic-data-tool)
+   was used
+2. Create an .env file in the root of your project containing the keys
 
 ```
-GOOGLE_MAPS_API_KEY="YOURSECRETKEYGOESHERE"
+ELASTIC_CLOUD_ID="UPDATE-ME"
+ELASTIC_USERNAME="UPDATE-ME"
+ELASTIC_PASSWORD="UPDATE-ME"
 ```
+
+3. Create a GOOGLE_MAPS_API_KEY and insert it in all relevant locations in the client side code. Tip: search code base for `maps.googleapis.com/maps/api/js?key`
 
 ## Start app 🚀
 
@@ -36,11 +42,17 @@ Done:
 - Calculation of fixed distance using Google maps distance matrix API to console
 - Client side calculation of fixed distance using Google maps distance matrix, render map in browser
 - Use browser Geolocation API to get and show current location when user clicks button on homepage
+- Map showing location of alpacas based on GeoJSON - uses mock alpaca data
+- Calculate distance of alpaca from my current location - uses mock alpaca data
+
+In progress:
+
+- Create APIs that get data from Elasticsearch
 
 Not done:
 
-- Map showing location of alpacas based on GeoJSON
-- Calculation distance of alpaca from my current location
+- Map showing location of alpacas based on GeoJSON - using data from Elasticsearch
+- Calculate distance of alpaca from my current location - using data from Elasticsearch
 
 ## Credits 👏
 

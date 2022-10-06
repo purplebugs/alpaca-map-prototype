@@ -2,9 +2,20 @@ import fetch from "node-fetch";
 import dotenv from "dotenv";
 const config = dotenv.config();
 import express from "express";
+import { Client } from "@elastic/elasticsearch";
 
 const app = express();
 const port = 3000;
+
+const client = new Client({
+  cloud: {
+    id: process.env.ELASTIC_CLOUD_ID,
+  },
+  auth: {
+    username: process.env.ELASTIC_USERNAME,
+    password: process.env.ELASTIC_PASSWORD,
+  },
+});
 
 app.get("/api", (req, res) => {
   res.send("Hello World!");
@@ -83,3 +94,50 @@ try {
   const errorBody = await error.response.text();
   console.error(`Error body: ${errorBody}`);
 }
+
+// Example use elasticsearch client
+// Ref: https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/introduction.html
+
+async function run() {
+  // Let's start by indexing some data
+  await client.index({
+    index: "game-of-thrones",
+    document: {
+      character: "Ned Stark",
+      quote: "Winter is coming.",
+    },
+  });
+
+  await client.index({
+    index: "game-of-thrones",
+    document: {
+      character: "Daenerys Targaryen",
+      quote: "I am the blood of the dragon.",
+    },
+  });
+
+  await client.index({
+    index: "game-of-thrones",
+    document: {
+      character: "Tyrion Lannister",
+      quote: "A mind needs books like a sword needs a whetstone.",
+    },
+  });
+
+  // here we are forcing an index refresh, otherwise we will not
+  // get any result in the consequent search
+  await client.indices.refresh({ index: "game-of-thrones" });
+
+  // Let's search!
+  const result = await client.search({
+    index: "game-of-thrones",
+    query: {
+      match: { quote: "winter" },
+    },
+  });
+
+  console.log("-------- Elasticsearch quick start: data from cloud ----------");
+  console.log(result.hits.hits);
+}
+
+run().catch(console.log);
