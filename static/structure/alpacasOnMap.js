@@ -50,8 +50,7 @@ const extractLocations = async (listOfAlpacas) => {
     const latitude = item?._source?.location?.coordinates[1];
     const longitude = item?._source?.location?.coordinates[0];
 
-    console.log(latitude);
-    console.log(longitude);
+    console.log(`latitude: ${latitude}, longitude: ${longitude}`);
     if (latitude !== null && latitude !== undefined) {
       if (longitude !== null && longitude !== undefined)
         myOutput.push({
