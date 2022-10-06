@@ -41,6 +41,7 @@ Examples to navigate to
 - http://localhost:3000/api - Shows message, outputs logs to console
 - http://localhost:3000/api/hello
 - http://localhost:3000/api/all
+- http://localhost:3000/api/all?from=0&size=25
 - http://localhost:3000/api/farm
 - http://localhost:3000/api/country/NO
 
