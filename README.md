@@ -15,6 +15,7 @@ npm install
 2. Create an .env file in the root of your project containing the keys
 
 ```
+GOOGLE_MAPS_API_KEY="UPDATE-ME"
 ELASTIC_CLOUD_ID="UPDATE-ME"
 ELASTIC_USERNAME="UPDATE-ME"
 ELASTIC_PASSWORD="UPDATE-ME"
