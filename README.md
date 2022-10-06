@@ -39,8 +39,9 @@ Front end
 Examples to navigate to
 
 - http://localhost:3000/api - Shows message, outputs logs to console
-- http://localhost:3000/api/all
 - http://localhost:3000/api/hello
+- http://localhost:3000/api/all
+- http://localhost:3000/api/farm
 
 ## Status 🚜
 
