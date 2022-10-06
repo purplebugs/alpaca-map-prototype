@@ -34,6 +34,17 @@ app.get("/api/closestAlpacasByRadius", (req, res) => {
   ]);
 });
 
+app.get("/api/all", async (req, res) => {
+  // send list of all public alpaca farms"
+  const result = await client.search({
+    index: "alpaca-public-farms",
+    query: { match_all: {} },
+    sort: [{ "name.keyword": { order: "asc" } }],
+  });
+
+  res.json(result.hits.hits);
+});
+
 app.use(express.static("static"));
 
 app.listen(port, () => {

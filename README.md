@@ -30,9 +30,16 @@ npm start
 
 ## Use app 🎷
 
+Front end
+
 - Navigate to [http://localhost:3000/](http://localhost:3000/) and follow links in UI
+- Navigate to http://localhost:3000/api/ and try using the API
+
+Examples to navigate to
 
 - http://localhost:3000/api - Shows message, outputs logs to console
+- http://localhost:3000/api/all
+- http://localhost:3000/api/hello
 
 ## Status 🚜
 
