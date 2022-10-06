@@ -43,7 +43,7 @@ const readAll = async () => {
   return responseJSON;
 };
 
-const extractLocations = (listOfAlpacas) => {
+const extractLocations = async (listOfAlpacas) => {
   const myOutput = [];
   for (const item of listOfAlpacas) {
     // Transform from [9.19248180144522,60.48698436178697] to { lat: 60.391262, lng: 5.322054 }
@@ -89,7 +89,7 @@ const initMap = async () => {
 
   const getAll = await readAll();
   console.log("/api/all", getAll);
-  const getLocations = extractLocations(getAll);
+  const getLocations = await extractLocations(getAll);
 
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
