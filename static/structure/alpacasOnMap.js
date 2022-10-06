@@ -64,13 +64,6 @@ const extractLocations = (listOfAlpacas) => {
   return myOutput;
 };
 
-// Ref: https://developers.google.com/maps/documentation/javascript/examples/distance-matrix#try-sample
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 const deleteMarkers = (markersArray) => {
   for (let i = 0; i < markersArray.length; i++) {
     markersArray[i].setMap(null);
@@ -92,73 +85,30 @@ const initMap = async () => {
 
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
+
+  // Dray my position on map
   const map = new google.maps.Map(document.getElementById("map"), {
     center: getPosition,
     zoom: 8,
   });
 
-  // initialize services
-  const geocoder = new google.maps.Geocoder();
-  const service = new google.maps.DistanceMatrixService();
-  // build request
-  const origin1 = getPosition;
-  const request = {
-    origins: [origin1],
-    destinations: getLocations, // getClosestAlpacasByRadius,
-    travelMode: google.maps.TravelMode.DRIVING,
-    unitSystem: google.maps.UnitSystem.METRIC,
-    avoidHighways: false,
-    avoidTolls: false,
-  };
-
-  // put request on page
-  document.getElementById("request").innerText = JSON.stringify(
-    request,
-    null,
-    2
+  // Draw alpacas on map
+  markersArray.push(
+    new google.maps.Marker({
+      map,
+      position: getPosition,
+      label: "My location",
+    })
   );
-  // get distance matrix response
-  service.getDistanceMatrix(request).then((response) => {
-    // put response
-    document.getElementById("response").innerText = JSON.stringify(
-      response,
-      null,
-      2
+
+  getLocations.forEach((location) => {
+    markersArray.push(
+      new google.maps.Marker({
+        map,
+        position: location,
+        label: "Alpaca",
+      })
     );
-
-    // show on map
-    const originList = response.originAddresses;
-    const destinationList = response.destinationAddresses;
-
-    deleteMarkers(markersArray);
-
-    const showGeocodedAddressOnMap = (asDestination) => {
-      const handler = ({ results }) => {
-        map.fitBounds(bounds.extend(results[0].geometry.location));
-        markersArray.push(
-          new google.maps.Marker({
-            map,
-            position: results[0].geometry.location,
-            label: asDestination ? "Alpaca" : "My location",
-          })
-        );
-      };
-      return handler;
-    };
-
-    for (let i = 0; i < originList.length; i++) {
-      const results = response.rows[i].elements;
-
-      geocoder
-        .geocode({ address: originList[i] })
-        .then(showGeocodedAddressOnMap(false));
-
-      for (let j = 0; j < results.length; j++) {
-        geocoder
-          .geocode({ address: destinationList[j] })
-          .then(showGeocodedAddressOnMap(true));
-      }
-    }
   });
 };
 
