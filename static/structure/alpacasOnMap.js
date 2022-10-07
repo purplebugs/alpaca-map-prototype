@@ -93,6 +93,7 @@ const initMap = async () => {
   });
 
   // Draw alpacas on map
+  map.fitBounds(bounds.extend(getPosition));
   markersArray.push(
     new google.maps.Marker({
       map,
@@ -102,6 +103,7 @@ const initMap = async () => {
   );
 
   getLocations.forEach((location) => {
+    map.fitBounds(bounds.extend(location));
     markersArray.push(
       new google.maps.Marker({
         map,
