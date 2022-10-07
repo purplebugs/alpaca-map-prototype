@@ -70,11 +70,13 @@ const deleteMarkers = (markersArray) => {
 
 const initMap = async () => {
   const getPosition = await getGeoPosition();
-
   const getAll = await readAll();
   const getLocations = extractLocations(getAll);
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
+
+  // Create an info window to share between markers.
+  const infoWindow = new google.maps.InfoWindow();
 
   // Draw my position on map
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -92,15 +94,26 @@ const initMap = async () => {
   );
 
   // Draw alpacas on map
-  getLocations.forEach((location) => {
+  getLocations.forEach((location, i) => {
     map.fitBounds(bounds.extend(location));
-    markersArray.push(
-      new google.maps.Marker({
-        map,
-        position: location,
-        label: "Alpaca",
-      })
-    );
+
+    // Make markers accessible https://developers.google.com/maps/documentation/javascript/markers#accessible
+    const marker = new google.maps.Marker({
+      map,
+      position: location,
+      title: `${i + 1}. TODO add accessible readable info like Farm name`,
+      label: `${i + 1}. Alpaca`,
+      optimized: false,
+    });
+
+    // Add a click listener for each marker, and set up the info window.
+    marker.addListener("click", () => {
+      infoWindow.close();
+      infoWindow.setContent(marker.getTitle());
+      infoWindow.open(marker.getMap(), marker);
+    });
+
+    markersArray.push(marker);
   });
 };
 
