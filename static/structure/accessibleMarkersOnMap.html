@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Accessible markers on map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./accessibleMarkersOnMap.js"></script>
+  </head>
+  <body>
+    <h1>Accessible markers on map</h1>
+    Takes a moment to load
+
+    <h2>
+      Use tab to select first icon, arrows to move between icons, spacebar or
+      enter to show info window
+    </h2>
+    <a
+      href="https://developers.google.com/maps/documentation/javascript/markers#accessible"
+      >Ref</a
+    >
+
+    <hr />
+
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4CRGK7nl21aBT_1uzNgLZ0B2SyAyd__E&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
