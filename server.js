@@ -36,10 +36,7 @@ app.get("/api/closestAlpacasByRadius", (req, res) => {
 });
 
 app.get("/api/all", async (req, res) => {
-  // send list of all public alpacas"
-
-  console.log("req.params", req.params);
-
+  // send list of all public alpacas, eg /api/all?from=0&size=25
   const from = req.query.from ? req.query.from : 0;
   const size = req.query.size ? req.query.size : 25;
 
@@ -60,11 +57,14 @@ app.get("/api/all", async (req, res) => {
 });
 
 app.get("/api/farm", async (req, res) => {
-  // send list of all public alpaca farms"
+  // send list of all public alpaca farms, eg /api/farm?from=0&size=25
+  const from = req.query.from ? req.query.from : 0;
+  const size = req.query.size ? req.query.size : 25;
+
   const result = await client.search({
     index: "alpaca-public-farms",
-    from: 0,
-    size: 25,
+    from: from,
+    size: size,
     query: { match_all: {} },
     sort: [{ "name.keyword": { order: "asc" } }],
   });
@@ -76,13 +76,16 @@ app.get("/api/farm", async (req, res) => {
 
 app.get("/api/country/:countryCode", async (req, res) => {
   // send list of all public alpacas by country
-  // eg /api/country/NO, /api/country/SE, /api/country/AU
+  // eg /api/country/NO?from=0&size=25, /api/country/SE, /api/country/AU
+
+  const from = req.query.from ? req.query.from : 0;
+  const size = req.query.size ? req.query.size : 25;
   const country = req.params.countryCode;
 
   const result = await client.search({
     index: "alpacas-enriched-with-public-farm-flag",
-    from: 0,
-    size: 25,
+    from: from,
+    size: size,
     query: {
       bool: {
         must: [
