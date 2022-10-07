@@ -20,7 +20,7 @@ const getGeoPosition = () => {
 };
 
 const readAll = async () => {
-  const response = await fetch("http://localhost:3000/api/all?size=25");
+  const response = await fetch("http://localhost:3000/api/all?size=150");
 
   /* Example response, snip:
     "location":{"kommunenavn":"NESBYEN","coordinates":[9.19248180144522,60.48698436178697],
