@@ -17,21 +17,6 @@ const getGeoPosition = () => {
   });
 };
 
-const readData = async () => {
-  const response = await fetch(
-    "http://localhost:3000/api/closestAlpacasByRadius"
-  );
-
-  /* Example response:
-  [
-    { lat: 60.391262, lng: 5.322054 },
-    { lat: 63.430515, lng: 10.395053 },
-  ]; */
-
-  const responseJSON = await response.json();
-  return responseJSON;
-};
-
 const readAll = async () => {
   const response = await fetch("http://localhost:3000/api/all?size=25");
 
@@ -75,9 +60,6 @@ const deleteMarkers = (markersArray) => {
 const initMap = async () => {
   const getPosition = await getGeoPosition();
   console.log(getPosition);
-
-  const getClosestAlpacasByRadius = await readData();
-  console.log("/api/closestAlpacasByRadius", getClosestAlpacasByRadius);
 
   const getAll = await readAll();
   console.log("/api/all", getAll);
