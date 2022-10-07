@@ -72,18 +72,16 @@ const initMap = async () => {
   const getPosition = await getGeoPosition();
 
   const getAll = await readAll();
-
   const getLocations = extractLocations(getAll);
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
 
-  // Dray my position on map
+  // Draw my position on map
   const map = new google.maps.Map(document.getElementById("map"), {
     center: getPosition,
     zoom: 8,
   });
 
-  // Draw alpacas on map
   map.fitBounds(bounds.extend(getPosition));
   markersArray.push(
     new google.maps.Marker({
@@ -93,6 +91,7 @@ const initMap = async () => {
     })
   );
 
+  // Draw alpacas on map
   getLocations.forEach((location) => {
     map.fitBounds(bounds.extend(location));
     markersArray.push(
