@@ -1,3 +1,5 @@
+const cache = new Map();
+
 const getGeoPosition = () => {
   return new Promise((resolve, reject) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
@@ -35,17 +37,26 @@ const extractLocations = (listOfAlpacas) => {
     const latitude = item?._source?.location?.coordinates[1];
     const longitude = item?._source?.location?.coordinates[0];
 
-    console.log(`latitude: ${latitude}, longitude: ${longitude}`);
     if (latitude !== null && latitude !== undefined) {
-      if (longitude !== null && longitude !== undefined)
-        myOutput.push({
+      if (longitude !== null && longitude !== undefined) {
+        const key = `${latitude}:${longitude}`;
+        const obj = {
           lat: item?._source?.location?.coordinates[1],
           lng: item?._source?.location?.coordinates[0],
-        });
+        };
+
+        if (cache.has(key)) {
+          console.log(`[LOG] Using location from cache: ${key}`);
+        } else {
+          myOutput.push(obj);
+          cache.set(key, obj);
+          console.log(`[LOG] Location added to cache: ${key}`);
+        }
+      }
     }
   }
 
-  console.log("myOutput", myOutput);
+  console.log("[LOG] myOutput", myOutput);
   return myOutput;
 };
 
@@ -59,12 +70,10 @@ const deleteMarkers = (markersArray) => {
 
 const initMap = async () => {
   const getPosition = await getGeoPosition();
-  console.log(getPosition);
 
   const getAll = await readAll();
-  console.log("/api/all", getAll);
-  const getLocations = extractLocations(getAll);
 
+  const getLocations = extractLocations(getAll);
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
 
