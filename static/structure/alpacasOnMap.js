@@ -20,7 +20,7 @@ const getGeoPosition = () => {
 };
 
 const readAll = async () => {
-  const response = await fetch("http://localhost:3000/api/all?size=150");
+  const response = await fetch("http://localhost:3000/api/all?size=5000");
 
   /* Example response, snip:
     "location":{"kommunenavn":"NESBYEN","coordinates":[9.19248180144522,60.48698436178697],
@@ -34,15 +34,15 @@ const extractLocations = (listOfAlpacas) => {
   const myOutput = [];
   for (const item of listOfAlpacas) {
     // Transform from [9.19248180144522,60.48698436178697] to { lat: 60.391262, lng: 5.322054 }
-    const latitude = item?._source?.location?.coordinates[1];
-    const longitude = item?._source?.location?.coordinates[0];
+    const lat = item?._source?.location?.coordinates[1];
+    const lng = item?._source?.location?.coordinates[0];
 
-    if (latitude !== null && latitude !== undefined) {
-      if (longitude !== null && longitude !== undefined) {
-        const key = `${latitude}:${longitude}`;
+    if (lat !== null && lat !== undefined) {
+      if (lng !== null && lng !== undefined) {
+        const key = `${lat}:${lng}`;
         const obj = {
-          lat: item?._source?.location?.coordinates[1],
-          lng: item?._source?.location?.coordinates[0],
+          lat,
+          lng,
         };
 
         if (cache.has(key)) {
