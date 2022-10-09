@@ -1,4 +1,4 @@
-const cache = new Map();
+const alpacaFarms = new Map();
 
 const getGeoPosition = () => {
   return new Promise((resolve, reject) => {
@@ -27,6 +27,7 @@ const readAll = async () => {
   */
 
   const responseJSON = await response.json();
+  console.log("responseJSON", responseJSON);
   return responseJSON;
 };
 
@@ -43,14 +44,18 @@ const extractLocations = (listOfAlpacas) => {
         const obj = {
           lat,
           lng,
+          name: item?._source?.name,
+          street: item?._source?.street,
+          city: item?._source?.city,
+          zip: item?._source?.zip,
         };
 
-        if (cache.has(key)) {
-          console.log(`[LOG] Using location from cache: ${key}`);
+        if (alpacaFarms.has(key)) {
+          console.log(`[LOG] Using location from alpacaFarms: ${key}`);
         } else {
           myOutput.push(obj);
-          cache.set(key, obj);
-          console.log(`[LOG] Location added to cache: ${key}`);
+          alpacaFarms.set(key, obj);
+          console.log(`[LOG] Location added to alpacaFarms: ${key}`);
         }
       }
     }
@@ -101,8 +106,8 @@ const initMap = async () => {
     const marker = new google.maps.Marker({
       map,
       position: location,
-      title: `${i + 1}. TODO add accessible readable info like Farm name`,
-      label: `${i + 1}. Alpaca`,
+      title: `${i + 1}. ${location.street} ${location.city} ${location.zip}`,
+      label: `${i + 1}. ${location.name}`,
       optimized: false,
     });
 
@@ -111,6 +116,8 @@ const initMap = async () => {
       infoWindow.close();
       infoWindow.setContent(marker.getTitle());
       infoWindow.open(marker.getMap(), marker);
+      const sidebar = document.getElementById("sidebar");
+      sidebar.innerHTML = `${i + 1} Hello`;
     });
 
     markersArray.push(marker);
