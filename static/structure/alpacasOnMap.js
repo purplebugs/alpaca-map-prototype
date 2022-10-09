@@ -41,6 +41,7 @@ const extractLocations = (listOfAlpacas) => {
     if (lat !== null && lat !== undefined) {
       if (lng !== null && lng !== undefined) {
         const key = `${lat}:${lng}`;
+        // Add farm and first alpaca from farm
         const obj = {
           lat,
           lng,
@@ -48,11 +49,25 @@ const extractLocations = (listOfAlpacas) => {
           street: item?._source?.street,
           city: item?._source?.city,
           zip: item?._source?.zip,
+          alpacas: [
+            {
+              alpacaShortName: item?._source?.alpacaShortName,
+              gender: item?._source?.gender,
+            },
+          ],
         };
 
         if (alpacaFarms.has(key)) {
           console.log(`[LOG] Using location from alpacaFarms: ${key}`);
+          // Do not add new farm, add next alpaca from farm
+          const currentFarm = alpacaFarms.get(key);
+          currentFarm.alpacas.push({
+            alpacaShortName: item?._source?.alpacaShortName,
+            gender: item?._source?.gender,
+          });
+          alpacaFarms.set(key, currentFarm);
         } else {
+          // Add new farm with first alpaca found
           myOutput.push(obj);
           alpacaFarms.set(key, obj);
           console.log(`[LOG] Location added to alpacaFarms: ${key}`);
@@ -99,25 +114,28 @@ const initMap = async () => {
   );
 
   // Draw alpacas on map
-  getLocations.forEach((location, i) => {
-    map.fitBounds(bounds.extend(location));
+  getLocations.forEach((farm, i) => {
+    map.fitBounds(bounds.extend(farm));
 
     // Make markers accessible https://developers.google.com/maps/documentation/javascript/markers#accessible
     const marker = new google.maps.Marker({
       map,
-      position: location,
-      title: `${i + 1}. ${location.street} ${location.city} ${location.zip}`,
-      label: `${i + 1}. ${location.name}`,
+      position: farm,
+      title: `${i + 1}. ${farm.street} ${farm.city} ${farm.zip}`,
+      label: `${i + 1}. ${farm.name}`,
       optimized: false,
     });
 
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", () => {
+      console.log("farm", farm);
       infoWindow.close();
       infoWindow.setContent(marker.getTitle());
       infoWindow.open(marker.getMap(), marker);
       const sidebar = document.getElementById("sidebar");
-      sidebar.innerHTML = `${i + 1} Hello`;
+      sidebar.innerHTML = `${i + 1} There are ${
+        farm.alpacas.length
+      } alpacas on this farm`;
     });
 
     markersArray.push(marker);
