@@ -55,7 +55,6 @@ Done:
 - Calculation of fixed distance using Google maps distance matrix API to console
 - Client side calculation of fixed distance using Google maps distance matrix, render map in browser
 - Use browser Geolocation API to get and show current location when user clicks button on homepage
-- Map showing location of alpacas based on GeoJSON - uses mock alpaca data
 - Calculate distance of alpaca from my current location - uses mock alpaca data
 - Create APIs that get data from Elasticsearch
 - Map showing location of alpacas based on GeoJSON - using data from Elasticsearch
