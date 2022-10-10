@@ -51,13 +51,10 @@ The following all accept query params `?from=0&size=25`
 
 Done:
 
-- Local server up and running
-- Calculation of fixed distance using Google maps distance matrix API to console
-- Client side calculation of fixed distance using Google maps distance matrix, render map in browser
 - Use browser Geolocation API to get and show current location when user clicks button on homepage
 - Calculate distance of alpaca from my current location - uses mock alpaca data
 - Create APIs that get data from Elasticsearch
-- Map showing location of alpacas based on GeoJSON - using data from Elasticsearch
+- Accessible map showing location of farms, number of alpacas per farm, based on GeoJSON - uses data from API that queries Elasticsearch
 
 ## Credits 👏
 
