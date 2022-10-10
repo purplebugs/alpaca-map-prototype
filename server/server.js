@@ -110,7 +110,7 @@ app.get("/api/country/:countryCode", async (req, res) => {
   res.json(response);
 });
 
-app.use(express.static("static"));
+app.use(express.static("./static"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
