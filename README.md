@@ -1,4 +1,4 @@
-# alpaca-map 🦙 🗺
+# alpaca-map-prototype 🦙 🗺
 
 Visualising alpacas on a map
 
