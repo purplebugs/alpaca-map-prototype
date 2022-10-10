@@ -57,15 +57,8 @@ Done:
 - Use browser Geolocation API to get and show current location when user clicks button on homepage
 - Map showing location of alpacas based on GeoJSON - uses mock alpaca data
 - Calculate distance of alpaca from my current location - uses mock alpaca data
-
-In progress:
-
 - Create APIs that get data from Elasticsearch
-
-Not done:
-
 - Map showing location of alpacas based on GeoJSON - using data from Elasticsearch
-- Calculate distance of alpaca from my current location - using data from Elasticsearch
 
 ## Credits 👏
 
